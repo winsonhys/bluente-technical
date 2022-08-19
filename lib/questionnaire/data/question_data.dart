@@ -15,3 +15,5 @@ const questionExplanation = [
   "Diamonds are the hardest material on the Vickers hardness scale.",
   "Mercury is the smallest."
 ];
+
+const questionCorrectAnswerIndex = [1, 3, 0];
