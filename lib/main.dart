@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_app/questionnaire/presentation/bloc/answer_selection_cubit.dart';
+import 'package:my_app/questionnaire/presentation/bloc/question_number_cubit.dart';
+import 'package:my_app/questionnaire/presentation/bloc/score_cubit.dart';
 import 'package:my_app/questionnaire/questionnaire.dart';
 
 void main() {
@@ -37,9 +41,15 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
             body: Container(
-          padding: const EdgeInsetsDirectional.only(top: 30),
-          child: const QuestionnaireScreen(),
-        )));
+                padding: const EdgeInsetsDirectional.only(top: 30),
+                child: MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (context) => QuestionCubit()),
+                    BlocProvider(create: (context) => ScoreCubit()),
+                    BlocProvider(create: (context) => AnswerSelectionCubit())
+                  ],
+                  child: const QuestionnaireScreen(),
+                ))));
   }
 }
 
