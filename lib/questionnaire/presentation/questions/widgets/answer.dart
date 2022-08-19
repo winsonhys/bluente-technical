@@ -40,24 +40,31 @@ class _AnswerState extends State<Answer> {
     final correctAnswerIndex =
         context.watch<QuestionCubit>().state.correctAnswerIndex;
 
-    final int selectedAnswer = context.watch<AnswerSelectionCubit>().state;
-
     final bool isSomeAnswerSelected =
-        context.read<AnswerSelectionCubit>().isSelected();
-
+        context.watch<AnswerSelectionCubit>().hasAnswerSelected();
+    final int selectedAns = context.watch<AnswerSelectionCubit>().state;
     final bool isCorrect = correctAnswerIndex == _answerIndex;
+
+    if (!isSomeAnswerSelected) {
+      setState(() {
+        _isSelected = false;
+      });
+    }
 
     final bool showPostSelection =
         _isSelected || (isCorrect && isSomeAnswerSelected);
 
     _PostSelectionColors selectionColors = _PostSelectionColors(isCorrect);
+
     return GestureDetector(
       onTap: () {
         if (isSomeAnswerSelected) {
           return;
         }
         context.read<AnswerSelectionCubit>().select(widget.answerIndex);
-        _isSelected = true;
+        setState(() {
+          _isSelected = true;
+        });
       },
       child: Container(
           decoration: BoxDecoration(
@@ -67,6 +74,7 @@ class _AnswerState extends State<Answer> {
             alignment: Alignment.center,
             children: [
               Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     answerData.value,
@@ -75,7 +83,14 @@ class _AnswerState extends State<Answer> {
                             ? TextStyle(color: selectionColors.textColor)
                             : const TextStyle()),
                   ),
-                  Image.asset(answerData.assetPath)
+                  Expanded(
+                      child: Container(
+                    padding: const EdgeInsets.all(10),
+                    child: Image.asset(
+                      answerData.assetPath,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ))
                 ],
               ),
               showPostSelection

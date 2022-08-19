@@ -5,5 +5,5 @@ class AnswerSelectionCubit extends Cubit<int> {
 
   void select(int answer) => emit(answer);
   void reset() => emit(-1);
-  bool isSelected() => (state != -1);
+  bool hasAnswerSelected() => (state != -1);
 }

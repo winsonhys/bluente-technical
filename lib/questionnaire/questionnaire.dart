@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -43,9 +45,16 @@ class _QuestionnaireView extends HookWidget {
     final correctAnswer =
         context.read<QuestionCubit>().state.correctAnswerIndex;
 
-    if (selectedAnswerCubit.isSelected() &&
-        selectedAnswerCubit.state != correctAnswer) {
-      cardAnimationController.forward();
+    if (selectedAnswerCubit.hasAnswerSelected()) {
+      if (selectedAnswerCubit.state != correctAnswer) {
+        cardAnimationController.forward();
+      } else {
+        Timer(const Duration(seconds: 1), () {
+          context.read<AnswerSelectionCubit>().reset();
+          context.read<QuestionCubit>().increment();
+          context.read<ScoreCubit>().increment();
+        });
+      }
     }
 
     return Container(
