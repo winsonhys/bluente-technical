@@ -40,25 +40,25 @@ class _AnswerState extends State<Answer> {
     final correctAnswerIndex =
         context.watch<QuestionCubit>().state.correctAnswerIndex;
 
-    final bool isSomeAnswerSelected =
+    final bool hasAnswerSelected =
         context.watch<AnswerSelectionCubit>().hasAnswerSelected();
     final int selectedAns = context.watch<AnswerSelectionCubit>().state;
     final bool isCorrect = correctAnswerIndex == _answerIndex;
 
-    if (!isSomeAnswerSelected) {
+    if (!hasAnswerSelected) {
       setState(() {
         _isSelected = false;
       });
     }
 
     final bool showPostSelection =
-        _isSelected || (isCorrect && isSomeAnswerSelected);
+        _isSelected || (isCorrect && hasAnswerSelected);
 
     _PostSelectionColors selectionColors = _PostSelectionColors(isCorrect);
 
     return GestureDetector(
       onTap: () {
-        if (isSomeAnswerSelected) {
+        if (hasAnswerSelected) {
           return;
         }
         context.read<AnswerSelectionCubit>().select(widget.answerIndex);
