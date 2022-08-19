@@ -42,9 +42,11 @@ class _AnswerState extends State<Answer> {
 
     final int selectedAnswer = context.watch<AnswerSelectionCubit>().state;
 
-    final bool isCorrect = correctAnswerIndex == _answerIndex;
     final bool isSomeAnswerSelected =
         context.read<AnswerSelectionCubit>().isSelected();
+
+    final bool isCorrect = correctAnswerIndex == _answerIndex;
+
     final bool showPostSelection =
         _isSelected || (isCorrect && isSomeAnswerSelected);
 
@@ -81,12 +83,13 @@ class _AnswerState extends State<Answer> {
                       alignment: Alignment.bottomRight,
                       child: Container(
                           margin: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: selectionColors.checkContainerColor),
                           child: Icon(
                             Icons.check,
-                            size: 50,
+                            size: 40,
                             color: selectionColors.checkColor,
                           )),
                     )

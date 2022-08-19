@@ -36,15 +36,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: Scaffold(
-            appBar: AppBar(
-              // Here we take the value from the MyHomePage object that was created by
-              // the App.build method, and use it to set our appbar title.
-              title: const Text("Test"),
-            ),
             body: Container(
-              padding: const EdgeInsetsDirectional.fromSTEB(30, 30, 30, 30),
-              child: const QuestionnaireScreen(),
-            )));
+          padding: const EdgeInsetsDirectional.only(top: 30),
+          child: const QuestionnaireScreen(),
+        )));
   }
 }
 
