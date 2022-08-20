@@ -18,4 +18,9 @@ class QuestionCubit extends Cubit<QuestionData> {
   bool areQuestionsFinished() {
     return currentQuestionIndex >= state.totalNumberOfQuestions;
   }
+
+  void reset() {
+    currentQuestionIndex = 0;
+    emit(QuestionData(currentQuestionIndex));
+  }
 }

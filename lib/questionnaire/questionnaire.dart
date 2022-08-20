@@ -12,22 +12,8 @@ import 'package:my_app/questionnaire/presentation/explanation/explanation_card.d
 import 'package:my_app/questionnaire/presentation/progress/progress.dart';
 import 'package:my_app/questionnaire/presentation/questions/questions.dart';
 
-class QuestionnaireScreen extends StatelessWidget {
+class QuestionnaireScreen extends HookWidget {
   const QuestionnaireScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: BlocProvider<ScoreCubit>(
-        create: (context) => ScoreCubit(),
-        child: const _QuestionnaireView(),
-      ),
-    );
-  }
-}
-
-class _QuestionnaireView extends HookWidget {
-  const _QuestionnaireView({Key? key}) : super(key: key);
 
   gotoNextQuestion(BuildContext context) {
     BlocProvider.of<AnswerSelectionCubit>(context, listen: false).reset();
@@ -42,9 +28,9 @@ class _QuestionnaireView extends HookWidget {
   }
 
   dispose(BuildContext context) {
-    BlocProvider.of<AnswerSelectionCubit>(context, listen: false).close();
-    BlocProvider.of<QuestionCubit>(context, listen: false).close();
-    BlocProvider.of<ScoreCubit>(context, listen: false).close();
+    BlocProvider.of<AnswerSelectionCubit>(context, listen: false).reset();
+    BlocProvider.of<QuestionCubit>(context, listen: false).reset();
+    BlocProvider.of<ScoreCubit>(context, listen: false).reset();
   }
 
   onFinishQuestion(BuildContext context) {

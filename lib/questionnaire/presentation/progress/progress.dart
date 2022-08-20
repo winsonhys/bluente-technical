@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/questionnaire/presentation/bloc/question_number_cubit.dart';
 import 'package:my_app/questionnaire/presentation/bloc/score_cubit.dart';
 
@@ -24,8 +25,10 @@ class _ProgressState extends State<Progress> {
       });
 
     late final animation = Tween<double>(
-            begin: (questionCubit.state.index - 1) / 3,
-            end: questionCubit.state.index / 3)
+            begin: (questionCubit.state.index - 1) /
+                questionCubit.state.totalNumberOfQuestions,
+            end: questionCubit.state.index /
+                questionCubit.state.totalNumberOfQuestions)
         .animate(animationController);
 
     questionCubit.stream.listen((event) {
@@ -43,18 +46,21 @@ class _ProgressState extends State<Progress> {
                 child: Container(
                   // margin: const EdgeInsets.only(right: 10),
                   child: LinearProgressIndicator(
-                      value: animation.value, minHeight: 14),
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(Colors.green.shade300),
+                      backgroundColor: Colors.grey.shade300,
+                      value: animation.value,
+                      minHeight: 14),
                 ))),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text("Score",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(fontWeight: FontWeight.bold)),
+                  style: GoogleFonts.inter(
+                      textStyle: Theme.of(context).textTheme.bodyText1,
+                      fontWeight: FontWeight.bold)),
               Text(score.toString(),
                   style: Theme.of(context).textTheme.bodyText1)
             ],

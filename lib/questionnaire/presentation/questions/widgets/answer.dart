@@ -79,7 +79,7 @@ class _AnswerState extends State<Answer> {
                   Text(
                     answerData.value,
                     style: Theme.of(context).textTheme.headline5?.merge(
-                        _isSelected
+                        showPostSelection
                             ? TextStyle(color: selectionColors.textColor)
                             : const TextStyle()),
                   ),
