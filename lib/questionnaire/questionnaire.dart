@@ -73,15 +73,16 @@ class QuestionnaireScreen extends HookWidget {
     return Container(
       child: Stack(
         children: [
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Progress(),
-                  QuestionsView(),
-                ],
-              )),
+          SafeArea(
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Progress(),
+                      QuestionsView(),
+                    ],
+                  ))),
           BlocListener(
             listener: (context, state) {
               cardAnimationController.reset();
@@ -91,7 +92,9 @@ class QuestionnaireScreen extends HookWidget {
                 position: cardAnimation,
                 child: Container(
                   alignment: Alignment.bottomCenter,
-                  child: ExplanationCard(onContinue: onFinishQuestion),
+                  child: ExplanationCard(
+                      onContinue:
+                          onFinishQuestion), // Conscious decision to not wrap it in SafeArea so that the card can cover the bottom all the way.
                 )),
           )
         ],

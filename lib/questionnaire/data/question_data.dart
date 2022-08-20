@@ -16,4 +16,4 @@ const questionExplanation = [
   "Mercury is the smallest."
 ];
 
-const questionCorrectAnswerIndex = [1, 3, 0];
+const questionCorrectAnswerIndex = [1, 2, 0];

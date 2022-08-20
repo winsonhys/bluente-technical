@@ -38,19 +38,14 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/',
             page: () => Scaffold(
-                body: Container(
-                    padding: const EdgeInsetsDirectional.only(top: 30),
-                    child: MultiBlocProvider(
-                      providers: [
-                        BlocProvider(create: (context) => QuestionCubit()),
-                        BlocProvider(create: (context) => ScoreCubit()),
-                        BlocProvider(
-                            create: (context) => AnswerSelectionCubit())
-                      ],
-                      child: const SafeArea(
-                          child:
-                              QuestionnaireScreen()), // Because we do not use app bar, it is better to wrap this in SafeArea.
-                    )))),
+                    body: MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (context) => QuestionCubit()),
+                    BlocProvider(create: (context) => ScoreCubit()),
+                    BlocProvider(create: (context) => AnswerSelectionCubit())
+                  ],
+                  child: const QuestionnaireScreen(),
+                ))),
         GetPage(
             name: "/result",
             page: () => const Scaffold(

@@ -60,10 +60,6 @@
 		<data>
 		FrxVeOenCu9lBLRdOuAgYIfStWs=
 		</data>
-		<key>flutter_assets/assets/Stone.png</key>
-		<data>
-		gB0J20FyfI0kSotSubSuMQedpJE=
-		</data>
 		<key>flutter_assets/assets/Venus.png</key>
 		<data>
 		miEBHNtS1z8MQpZTM2EGaTXg31A=
@@ -82,7 +78,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		1ml6M0x7AtToBv+yVLOBrT/sLec=
+		XAtJoDb270pp0fVQf2uWG9IWVTo=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -186,13 +182,6 @@
 			9Cv1d5MeaLMnd2UkxyrHZB0yUqEjl7GAudxXmYFDMEQ=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/Stone.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3nZi7zzkBjIz6R1XeAWioXOuRaCvGBfvwzCUMiklwPc=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/Venus.png</key>
 		<dict>
 			<key>hash2</key>
@@ -225,7 +214,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			25uwAZ/s36nfNoq2Lo9M4IeEP5VHRbVjltmHPEsrEs8=
+			MD4/0f8me4WnD3mPTa7nO5GRGT4FByDDAdibm3lmi8I=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
