@@ -14,8 +14,8 @@ class Progress extends HookWidget {
 
     final animationController = useAnimationController(
         duration: const Duration(microseconds: 200),
-        lowerBound: questionState.number - 1 / 3,
-        upperBound: questionState.number.toDouble() / 3);
+        lowerBound: questionState.index - 1 / 3,
+        upperBound: questionState.index.toDouble() / 3);
 
     return Row(
       mainAxisSize: MainAxisSize.min,

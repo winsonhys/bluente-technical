@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_app/questionnaire/presentation/bloc/question_number_cubit.dart';
 
 class ExplanationCard extends StatelessWidget {
-  const ExplanationCard({Key? key}) : super(key: key);
+  void Function(BuildContext context) onContinue;
+
+  ExplanationCard({Key? key, required this.onContinue}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,10 @@ class ExplanationCard extends StatelessWidget {
           children: [
             Text(
               "Explanation",
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  ?.merge(const TextStyle(color: Colors.white)),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -29,17 +34,30 @@ class ExplanationCard extends StatelessWidget {
                   flex: 1,
                   child: Text(
                     explanation,
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1
+                        ?.merge(const TextStyle(color: Colors.white)),
                     softWrap: true,
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    onContinue(context);
+                  },
                   style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 15),
                       primary: Colors.white,
                       onPrimary: Colors.black),
-                  child: const Text("Continue"),
+                  child: Text(
+                    "Continue",
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1
+                        ?.merge(const TextStyle(fontWeight: FontWeight.bold)),
+                  ),
                 )
               ],
             )

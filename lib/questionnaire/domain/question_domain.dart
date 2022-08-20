@@ -17,16 +17,17 @@ class _Answer {
 }
 
 class QuestionData {
-  final int _number;
+  int get totalNumberOfQuestions => questionText.length;
+  final int _index;
 
-  QuestionData(this._number);
+  QuestionData(this._index);
 
-  int get number => _number;
-  String get text => questionText[_number];
+  int get index => _index;
+  String get text => questionText[_index];
   List<_Answer> get answers =>
-      questionOptions[_number].map((option) => _Answer(option)).toList();
+      questionOptions[_index].map((option) => _Answer(option)).toList();
 
-  String get explanation => questionExplanation[_number];
+  String get explanation => questionExplanation[_index];
 
-  int get correctAnswerIndex => questionCorrectAnswerIndex[_number];
+  int get correctAnswerIndex => questionCorrectAnswerIndex[_index];
 }

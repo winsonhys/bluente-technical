@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get/route_manager.dart';
 import 'package:my_app/questionnaire/presentation/bloc/answer_selection_cubit.dart';
 import 'package:my_app/questionnaire/presentation/bloc/question_number_cubit.dart';
 import 'package:my_app/questionnaire/presentation/bloc/score_cubit.dart';
@@ -28,6 +29,34 @@ class QuestionnaireScreen extends StatelessWidget {
 class _QuestionnaireView extends HookWidget {
   const _QuestionnaireView({Key? key}) : super(key: key);
 
+  gotoNextQuestion(BuildContext context) {
+    BlocProvider.of<AnswerSelectionCubit>(context, listen: false).reset();
+    BlocProvider.of<QuestionCubit>(context, listen: false).increment();
+    BlocProvider.of<ScoreCubit>(context, listen: false).increment();
+  }
+
+  gotoResultPage(BuildContext context) {
+    final score = BlocProvider.of<ScoreCubit>(context, listen: false).state;
+    dispose(context);
+    Get.toNamed("/result", arguments: score.toString());
+  }
+
+  dispose(BuildContext context) {
+    BlocProvider.of<AnswerSelectionCubit>(context, listen: false).close();
+    BlocProvider.of<QuestionCubit>(context, listen: false).close();
+    BlocProvider.of<ScoreCubit>(context, listen: false).close();
+  }
+
+  onFinishQuestion(BuildContext context) {
+    final questionCubit =
+        BlocProvider.of<QuestionCubit>(context, listen: false).state;
+    if (questionCubit.totalNumberOfQuestions - 1 == questionCubit.index) {
+      gotoResultPage(context);
+    } else {
+      gotoNextQuestion(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final cardAnimationController =
@@ -42,17 +71,15 @@ class _QuestionnaireView extends HookWidget {
     ));
 
     final selectedAnswerCubit = context.watch<AnswerSelectionCubit>();
-    final correctAnswer =
-        context.read<QuestionCubit>().state.correctAnswerIndex;
+    final questionCubit = context.watch<QuestionCubit>().state;
+    final correctAnswer = questionCubit.correctAnswerIndex;
 
     if (selectedAnswerCubit.hasAnswerSelected()) {
       if (selectedAnswerCubit.state != correctAnswer) {
         cardAnimationController.forward();
       } else {
         Timer(const Duration(seconds: 1), () {
-          context.read<AnswerSelectionCubit>().reset();
-          context.read<QuestionCubit>().increment();
-          context.read<ScoreCubit>().increment();
+          onFinishQuestion(context);
         });
       }
     }
@@ -69,12 +96,18 @@ class _QuestionnaireView extends HookWidget {
                   QuestionsView(),
                 ],
               )),
-          SlideTransition(
-              position: cardAnimation,
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                child: const ExplanationCard(),
-              ))
+          BlocListener(
+            listener: (context, state) {
+              cardAnimationController.reset();
+            },
+            bloc: BlocProvider.of<QuestionCubit>(context, listen: false),
+            child: SlideTransition(
+                position: cardAnimation,
+                child: Container(
+                  alignment: Alignment.bottomCenter,
+                  child: ExplanationCard(onContinue: onFinishQuestion),
+                )),
+          )
         ],
       ),
     );
