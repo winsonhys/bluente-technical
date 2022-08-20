@@ -11,7 +11,7 @@ class Result extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           const Text("Total Score"),
-          Text(Get.arguments ?? -1),
+          Text(Get.arguments ?? "NaN"),
           ElevatedButton(
               onPressed: () {
                 Get.toNamed("/");

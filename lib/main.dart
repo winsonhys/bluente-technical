@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme(const TextTheme(
+            bodyText1: TextStyle(fontSize: 18, color: Color(0xff154c79)),
             headline5: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
