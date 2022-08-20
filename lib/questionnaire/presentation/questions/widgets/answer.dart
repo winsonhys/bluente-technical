@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/questionnaire/presentation/bloc/answer_selection_cubit.dart';
 import 'package:my_app/questionnaire/presentation/bloc/question_number_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_app/questionnaire/presentation/bloc/score_cubit.dart';
 
 class _PostSelectionColors {
   final bool _isCorrect;
@@ -65,6 +66,10 @@ class _AnswerState extends State<Answer> {
           return;
         }
         context.read<AnswerSelectionCubit>().select(widget.answerIndex);
+        if (isCorrect) {
+          context.read<ScoreCubit>().increment();
+        }
+
         setState(() {
           _isSelected = true;
         });

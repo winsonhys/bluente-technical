@@ -18,7 +18,6 @@ class QuestionnaireScreen extends HookWidget {
   gotoNextQuestion(BuildContext context) {
     BlocProvider.of<AnswerSelectionCubit>(context, listen: false).reset();
     BlocProvider.of<QuestionCubit>(context, listen: false).increment();
-    BlocProvider.of<ScoreCubit>(context, listen: false).increment();
   }
 
   gotoResultPage(BuildContext context) {
