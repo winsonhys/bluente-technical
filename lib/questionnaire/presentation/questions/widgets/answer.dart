@@ -10,12 +10,15 @@ class _PostSelectionColors {
 
   Color get textColor => Colors.white;
   // TODO: Replace with correct colors
-  Color get checkContainerColor =>
-      _isCorrect ? Colors.green.shade200 : Colors.red.shade200;
-  Color get checkColor =>
-      _isCorrect ? Colors.green.shade900 : Colors.red.shade900;
-  Color? get fillColor =>
-      _isCorrect ? Colors.green.shade300 : Colors.red.shade800;
+  Color get checkContainerColor => _isCorrect
+      ? const Color.fromRGBO(203, 232, 150, 1)
+      : const Color.fromRGBO(235, 87, 87, 1);
+  Color get checkColor => _isCorrect
+      ? const Color.fromRGBO(39, 174, 96, 1)
+      : const Color.fromRGBO(163, 11, 55, 1);
+  Color? get fillColor => _isCorrect
+      ? const Color.fromRGBO(111, 207, 151, 1)
+      : const Color.fromRGBO(163, 11, 55, 1);
 }
 
 class Answer extends StatefulWidget {
@@ -67,6 +70,7 @@ class _AnswerState extends State<Answer> {
         });
       },
       child: Container(
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
               color: showPostSelection ? selectionColors.fillColor : null,
               borderRadius: BorderRadius.circular(15)),

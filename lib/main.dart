@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             headline4: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
-                color: Color(0xff154c79)))),
+                color: Color.fromRGBO(0, 53, 84, 1)))),
         primarySwatch: Colors.blue,
       ),
       initialRoute: "/",

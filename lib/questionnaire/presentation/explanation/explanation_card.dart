@@ -14,7 +14,7 @@ class ExplanationCard extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.blue.shade900,
+          color: const Color.fromRGBO(0, 71, 119, 1),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

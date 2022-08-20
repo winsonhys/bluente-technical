@@ -41,9 +41,9 @@ class Result extends StatelessWidget {
                   Get.toNamed("/");
                 },
                 style: ElevatedButton.styleFrom(
-                  shape: const StadiumBorder(),
-                  padding: const EdgeInsets.symmetric(vertical: 30),
-                ),
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(vertical: 30),
+                    primary: const Color.fromRGBO(86, 204, 242, 1)),
                 child: Text(
                   "Restart",
                   style: GoogleFonts.inter(
