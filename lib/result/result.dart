@@ -35,6 +35,7 @@ class Result extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.only(bottom: 10),
             child: ElevatedButton(
                 onPressed: () {
                   Get.toNamed("/");

@@ -49,7 +49,7 @@ class QuestionnaireScreen extends HookWidget {
         useAnimationController(duration: const Duration(milliseconds: 300));
 
     late final Animation<Offset> cardAnimation = Tween<Offset>(
-      begin: const Offset(0, 0.3),
+      begin: const Offset(0, 1),
       end: Offset.zero,
     ).animate(CurvedAnimation(
       parent: cardAnimationController,
