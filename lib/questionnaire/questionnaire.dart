@@ -34,9 +34,9 @@ class QuestionnaireScreen extends HookWidget {
   }
 
   onFinishQuestion(BuildContext context) {
-    final questionCubit =
+    final question =
         BlocProvider.of<QuestionCubit>(context, listen: false).state;
-    if (questionCubit.totalNumberOfQuestions - 1 == questionCubit.index) {
+    if (question.totalNumberOfQuestions - 1 == question.index) {
       gotoResultPage(context);
     } else {
       gotoNextQuestion(context);
@@ -45,6 +45,8 @@ class QuestionnaireScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Although this will cause unnecessary rerenders,
+    // I'm willing to trade negligible performance impact for much cleaner code.
     final cardAnimationController =
         useAnimationController(duration: const Duration(milliseconds: 300));
 
@@ -57,8 +59,8 @@ class QuestionnaireScreen extends HookWidget {
     ));
 
     final selectedAnswerCubit = context.watch<AnswerSelectionCubit>();
-    final questionCubit = context.watch<QuestionCubit>().state;
-    final correctAnswer = questionCubit.correctAnswerIndex;
+    final question = context.watch<QuestionCubit>().state;
+    final correctAnswer = question.correctAnswerIndex;
 
     if (selectedAnswerCubit.hasAnswerSelected()) {
       if (selectedAnswerCubit.state != correctAnswer) {

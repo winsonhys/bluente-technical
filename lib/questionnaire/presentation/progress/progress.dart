@@ -44,7 +44,6 @@ class _ProgressState extends State<Progress> {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: Container(
-                  // margin: const EdgeInsets.only(right: 10),
                   child: LinearProgressIndicator(
                       valueColor:
                           AlwaysStoppedAnimation<Color>(Colors.green.shade300),
