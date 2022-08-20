@@ -25,9 +25,9 @@ class _ProgressState extends State<Progress> {
       });
 
     late final animation = Tween<double>(
-            begin: (questionCubit.state.index - 1) /
+            begin: (questionCubit.state.index) /
                 questionCubit.state.totalNumberOfQuestions,
-            end: questionCubit.state.index /
+            end: (questionCubit.state.index + 1) /
                 questionCubit.state.totalNumberOfQuestions)
         .animate(animationController);
 
@@ -35,7 +35,7 @@ class _ProgressState extends State<Progress> {
       animationController.reset();
       animationController.forward();
     });
-
+    animationController.forward();
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
