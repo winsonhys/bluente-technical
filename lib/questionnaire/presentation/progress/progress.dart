@@ -11,8 +11,7 @@ class Progress extends StatefulHookWidget {
   State<Progress> createState() => _ProgressState();
 }
 
-class _ProgressState extends State<Progress>
-    with SingleTickerProviderStateMixin {
+class _ProgressState extends State<Progress> {
   @override
   Widget build(BuildContext context) {
     final questionCubit = context.watch<QuestionCubit>();
@@ -20,7 +19,6 @@ class _ProgressState extends State<Progress>
 
     final animationController = useAnimationController(
       duration: const Duration(milliseconds: 500),
-      // vsync: this,
     )..addListener(() {
         setState(() {});
       });
