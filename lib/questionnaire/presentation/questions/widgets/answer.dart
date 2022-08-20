@@ -11,9 +11,9 @@ class _PostSelectionColors {
   Color get textColor => Colors.white;
   // TODO: Replace with correct colors
   Color get checkContainerColor =>
-      _isCorrect ? Colors.green.shade200 : Colors.red;
+      _isCorrect ? Colors.green.shade200 : Colors.red.shade200;
   Color get checkColor =>
-      _isCorrect ? Colors.green.shade800 : Colors.red.shade900;
+      _isCorrect ? Colors.green.shade900 : Colors.red.shade900;
   Color? get fillColor =>
       _isCorrect ? Colors.green.shade300 : Colors.red.shade800;
 }
