@@ -5,25 +5,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/questionnaire/presentation/bloc/question_number_cubit.dart';
 import 'package:my_app/questionnaire/presentation/bloc/score_cubit.dart';
 
-class Progress extends StatefulHookWidget {
+class Progress extends HookWidget {
   const Progress({Key? key}) : super(key: key);
 
-  @override
-  State<Progress> createState() => _ProgressState();
-}
-
-class _ProgressState extends State<Progress> {
   @override
   Widget build(BuildContext context) {
     final questionCubit = context.watch<QuestionCubit>();
     final score = context.watch<ScoreCubit>().state;
 
-    final animationController = useAnimationController(
+    late final animationController = useAnimationController(
       duration: const Duration(milliseconds: 500),
-    )..addListener(() {
-        setState(() {});
-      });
-
+    );
     late final animation = Tween<double>(
             begin: (questionCubit.state.index) /
                 questionCubit.state.totalNumberOfQuestions,
@@ -48,7 +40,7 @@ class _ProgressState extends State<Progress> {
                       valueColor:
                           AlwaysStoppedAnimation<Color>(Colors.green.shade300),
                       backgroundColor: Colors.grey.shade300,
-                      value: animation.value,
+                      value: useAnimation(animation),
                       minHeight: 14),
                 ))),
         Padding(
